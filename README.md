@@ -55,4 +55,10 @@ fs.createReadStream("./data/import.xml").pipe(stream);
 
 ```
 
+# Methods
 
+`createStream(<type>)`, where type can be:
+
+- "import" - if you are parsing import.xml file.
+
+- "offers" - if you are parsing offers.xml file.
