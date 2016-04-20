@@ -1,0 +1,29 @@
+{
+  "name": "commerceml-js",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kirill-zhirnov/commerceml-js.git"
+  },
+  "author": "Kirill Zhirnov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kirill-zhirnov/commerceml-js/issues"
+  },
+  "homepage": "https://github.com/kirill-zhirnov/commerceml-js#readme",
+  "dependencies": {
+    "sax": "^1.2.1",
+    "x2js": "^2.0.1"
+  },
+  "devDependencies": {
+    "grunt": "^1.0.1",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-coffee": "^1.0.0",
+    "load-grunt-tasks": "^3.5.0"
+  }
+}
