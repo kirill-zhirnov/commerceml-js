@@ -8,7 +8,7 @@ A sax-style parser for CommerceMl (1C).
 
 # How to use?
 
-```Java-Script
+```JavaScript
 
 var fs = require('fs');
 var	commerceMl = require('commerceml-js');
