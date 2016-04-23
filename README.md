@@ -16,10 +16,11 @@ var	commerceMl = require('commerceml-js');
 var stream = commerceMl.createStream('import');
 
 stream.on('commercialInfo', function(data, parser) {
-	parser.pause();
 	console.log('commercialInfo:', data);
+
+	stream.pause();
 	setTimeout(function() {
-		parser.resume()
+		stream.resume()
 	}, 1000);
 });
 
