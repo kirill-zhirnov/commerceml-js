@@ -15,7 +15,7 @@ var	commerceMl = require('commerceml-js');
 
 var stream = commerceMl.createStream('import');
 
-stream.on('commercialInfo', function(data, parser) {
+stream.on('commercialInfo', function(data) {
 	console.log('commercialInfo:', data);
 
 	stream.pause();
