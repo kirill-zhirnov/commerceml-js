@@ -15,8 +15,12 @@ var	commerceMl = require('commerceml-js');
 
 var stream = commerceMl.createStream('import');
 
-stream.on('commercialInfo', function(data) {
+stream.on('commercialInfo', function(data, parser) {
+	parser.pause();
 	console.log('commercialInfo:', data);
+	setTimeout(function() {
+		parser.resume()
+	}, 1000);
 });
 
 stream.on('classifier', function(data) {
@@ -62,3 +66,7 @@ fs.createReadStream("./data/import.xml").pipe(stream);
 - "import" - if you are parsing import.xml file.
 
 - "offers" - if you are parsing offers.xml file.
+
+`pause()`
+
+`resume()`

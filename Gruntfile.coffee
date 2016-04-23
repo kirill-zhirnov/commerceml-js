@@ -12,6 +12,11 @@ module.exports = (grunt) ->
 				src: ['*.coffee']
 				dest : './lib/'
 				ext : '.js'
+
+		watch :
+			compileCoffee :
+				files : ['./src/*.coffee']
+				tasks : ['coffee:compile']
 	}
 
 	require('load-grunt-tasks')(grunt, { scope: 'devDependencies' })

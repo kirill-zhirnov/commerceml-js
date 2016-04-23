@@ -1,10 +1,10 @@
 _ = require 'underscore'
-sax = require 'sax'
+expat = require 'node-expat'
 X2JS = require 'x2js'
 
 class Parser
 	constructor : (options = {}) ->
-		@saxStream = null
+		@parser = null
 
 		@position = []
 		@openTag = null
@@ -14,22 +14,22 @@ class Parser
 		@collectOpenTags = []
 
 	createStream : ->
-		@saxStream = require("sax").createStream(true)
+		@parser = new expat.Parser('UTF-8')
 
-		@saxStream.on "opentag", () =>
+		@parser.on "startElement", () =>
 			@onOpenTag.apply @, arguments
 
-		@saxStream.on "closetag", () =>
+		@parser.on "endElement", () =>
 			@onCloseTag.apply @, arguments
 
-		@saxStream.on "text", () =>
+		@parser.on "text", () =>
 			@onText.apply @, arguments
 
-		return @saxStream
+		return @parser
 
-	onOpenTag : (node) ->
-		@position.push node.name
-		@openTag = node.name
+	onOpenTag : (nodeName, nodeAttrs) ->
+		@position.push nodeName
+		@openTag = nodeName
 		@collectCurrentNode = false
 
 		collectRules = @getCollectRules()
@@ -40,11 +40,11 @@ class Parser
 
 		if @collect && @shallCollect()
 			@collectCurrentNode = true
-			@xml += "<#{node.name}"
-			@collectOpenTags.push node.name
+			@xml += "<#{nodeName}"
+			@collectOpenTags.push nodeName
 
-			if node.attributes && _.isObject(node.attributes)
-				for key, val of node.attributes
+			if nodeAttrs && _.isObject(nodeAttrs)
+				for key, val of nodeAttrs
 					@xml += " #{key}=\"#{val}\""
 
 			@xml += ">"
@@ -73,7 +73,7 @@ class Parser
 				@xml += "</#{@collectOpenTags[i]}>"
 
 		x2js = new X2JS()
-		@saxStream.emit @collect, x2js.xml2js(@xml)
+		@parser.emit @collect, x2js.xml2js(@xml)
 
 		@collectOpenTags = []
 		@collect = null
@@ -123,5 +123,11 @@ class Parser
 
 	getCollectRules : ->
 		return {}
+
+	pause : ->
+		@parser.stop()
+
+	resume : ->
+		@parser.resume()
 
 module.exports = Parser

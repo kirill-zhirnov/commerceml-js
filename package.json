@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/kirill-zhirnov/commerceml-js#readme",
   "dependencies": {
-    "sax": "^1.2.1",
+    "node-expat": "^2.3.13",
     "underscore": "^1.8.3",
     "x2js": "^2.0.1"
   },
@@ -25,6 +25,7 @@
     "grunt": "^1.0.1",
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-coffee": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0",
     "load-grunt-tasks": "^3.5.0"
   }
 }
