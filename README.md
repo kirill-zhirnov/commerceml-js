@@ -11,49 +11,44 @@ A sax-style parser for CommerceMl (1C).
 ```JavaScript
 
 var fs = require('fs');
-var	commerceMl = require('commerceml-js');
+var commerceMl = require('commerceml-js');
 
 var stream = commerceMl.createStream('import');
 
 stream.on('commercialInfo', function(data) {
-	console.log('commercialInfo:', data);
-
-	stream.pause();
-	setTimeout(function() {
-		stream.resume()
-	}, 1000);
+    console.log('commercialInfo:', data);
 });
 
 stream.on('classifier', function(data) {
-	console.log('classifier', data);
+    console.log('classifier', data);
 });
 
 stream.on('classifierGroup', function(data) {
-	console.log('classifierGroup', data);
+    console.log('classifierGroup', data);
 });
 
 stream.on('classifierProperty', function(data) {
-	console.log('classifierProperty', data);
+    console.log('classifierProperty', data);
 });
 
 stream.on('catalog', function(data) {
-	console.log('catalog', data);
+    console.log('catalog', data);
 });
 
 stream.on('product', function(data) {
-	console.log('product', data);
+    console.log('product', data);
 });
 
 stream.on('packageOffers', function(data) {
-	console.log('packageOffers', data);
+    console.log('packageOffers', data);
 });
 
 stream.on('offer', function(data) {
-	console.log('offer', data);
+    console.log('offer', data);
 });
 
 stream.on("error", function(error) {
-	console.log('error', error);
+    console.log('error', error);
 });
 
 fs.createReadStream("./data/import.xml").pipe(stream);
