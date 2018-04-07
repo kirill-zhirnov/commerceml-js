@@ -130,10 +130,4 @@ class Parser
 	getCollectRules : ->
 		return {}
 
-	pause : ->
-		@parser.stop()
-
-	resume : ->
-		@parser.resume()
-
 module.exports = Parser

@@ -62,7 +62,3 @@ fs.createReadStream("./data/import.xml").pipe(stream);
 - "import" - if you are parsing import.xml file.
 
 - "offers" - if you are parsing offers.xml file.
-
-`pause()`
-
-`resume()`
