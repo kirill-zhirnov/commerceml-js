@@ -1,5 +1,5 @@
 _ = require 'underscore'
-expat = require 'node-expat'
+sax = require 'sax'
 X2JS = require 'x2js'
 
 class Parser
@@ -14,12 +14,15 @@ class Parser
 		@collectOpenTags = []
 
 	createStream : ->
-		@parser = new expat.Parser('UTF-8')
+		@parser = sax.createStream true, {
+			trim : true
+			normalize : true
+		}
 
-		@parser.on "startElement", () =>
+		@parser.on "opentag", () =>
 			@onOpenTag.apply @, arguments
 
-		@parser.on "endElement", () =>
+		@parser.on "closetag", () =>
 			@onCloseTag.apply @, arguments
 
 		@parser.on "text", () =>
@@ -27,7 +30,10 @@ class Parser
 
 		return @parser
 
-	onOpenTag : (nodeName, nodeAttrs) ->
+	onOpenTag : (tag) ->
+		nodeName = tag.name
+		nodeAttrs = tag.attributes
+
 		@position.push nodeName
 		@openTag = nodeName
 		@collectCurrentNode = false
