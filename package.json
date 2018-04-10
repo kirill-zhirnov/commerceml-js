@@ -1,6 +1,6 @@
 {
   "name": "commerceml-js",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "A sax-style parser for CommerceMl (1C).",
   "main": "index.js",
   "scripts": {
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kirill-zhirnov/commerceml-js#readme",
   "dependencies": {
+    "entities": "^1.1.1",
     "sax": "^1.2.4",
     "underscore": "^1.8.3",
     "x2js": "^2.0.1"

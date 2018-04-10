@@ -1,6 +1,7 @@
 _ = require 'underscore'
 sax = require 'sax'
 X2JS = require 'x2js'
+entities = require 'entities'
 
 class Parser
 	constructor : (options = {}) ->
@@ -87,7 +88,7 @@ class Parser
 
 	onText : (text) ->
 		if @openTag && @collectCurrentNode
-			@xml += text
+			@xml += entities.encodeXML text
 
 	onCloseTag : (nodeName) ->
 		if @collect
